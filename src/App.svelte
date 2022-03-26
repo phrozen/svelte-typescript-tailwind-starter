@@ -1,10 +1,12 @@
 <script lang="ts">
+	import Test from './Test.svelte';
+	console.log(Test);
 	export let name: string;
 </script>
 
-<main>
+<main class="container mx-auto">
 	<h1>Hello {name}!</h1>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
+	<Test />
 </main>
 
 <style>

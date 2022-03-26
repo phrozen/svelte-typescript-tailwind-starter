@@ -6,6 +6,10 @@ import { terser } from 'rollup-plugin-terser';
 import sveltePreprocess from 'svelte-preprocess';
 import typescript from '@rollup/plugin-typescript';
 import css from 'rollup-plugin-css-only';
+import alias from '@rollup/plugin-alias';
+import path from 'path';
+
+const projectRootDir = path.resolve(__dirname);
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -64,6 +68,16 @@ export default {
 			sourceMap: !production,
 			inlineSources: !production
 		}),
+
+		// module alias like in tsconfig.json
+		alias({
+            entries: [
+                { 
+                    find: '@src',
+                    replacement: path.resolve(projectRootDir, 'src')
+                }
+            ]
+        }),
 
 		// In dev mode, call `npm run start` once
 		// the bundle has been generated
